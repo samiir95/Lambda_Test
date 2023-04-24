@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Parallel Test Suite" parallel="tests" thread-count="2">
+    <test name="Chrome on Windows 10">
+        <parameter name="browserName" value="chrome" />
+        <parameter name="platform" value="Windows 10" />
+        <parameter name="browserVersion" value="86.0" />
+
+        <classes>
+            <class name="com.lambda.tests.LambdaTests" />
+        </classes>
+    </test>
+    <test name="Edge on MacOS">
+        <parameter name="browserName" value="MicrosoftEdge" />
+        <parameter name="platform" value="macOS Sierra" />
+        <parameter name="browserVersion" value="87.0" />
+
+        <classes>
+            <class name="com.lambda.tests.LambdaTests" />
+        </classes>
+    </test>
+</suite>
