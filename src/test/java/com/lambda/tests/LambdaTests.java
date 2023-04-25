@@ -26,18 +26,21 @@ public class LambdaTests {
 
     private static final String BASEURL = "https://www.lambdatest.com";
     boolean status = false;
-    private static final String USERNAME = "mgadallah";
-    private static final String ACCESSKEY = "xSrFKsneXOYsZjlCUqXwuffVF5tN4vG804nsYpbgzjEQg1ZedI";
+    private String ltUsername ;
+    private String ltAccessKey;
     private static ThreadLocal<RemoteWebDriver> driver = null;
     private static final String GRIDURL = "@hub.lambdatest.com/wd/hub";
 
     @BeforeMethod
-    @Parameters({"browserName", "browserVersion", "platform"})
-    public void setUp(String browserName, String browserVersion, String platform) {
+    @Parameters({"ltUsername", "ltAccessKey", "browserName", "browserVersion", "platform"})
+    public void setUp(String ltUsername, String ltAccessKey, String browserName, String browserVersion, String platform) {
 
         try {
+            this.ltUsername = ltUsername;
+            this.ltAccessKey = ltAccessKey;
+
             // Define the LambdaTest URL
-            String remoteURL = "https://" + USERNAME + ":" + ACCESSKEY + GRIDURL;
+            String remoteURL = "https://" + ltUsername + ":" + ltAccessKey + GRIDURL;
             driver = new ThreadLocal<>();
 
             if (browserName.equalsIgnoreCase("chrome")) {
