@@ -14,6 +14,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -106,7 +107,10 @@ public class LambdaTests {
 
         if (actualURL.equals(expectedURL)) {
             status = true;
-        }
+            driver.get().executeScript("lambda-status=passed");
+        } else
+            driver.get().executeScript("lambda-status=failed");
+
 
         // Close the current browser window
         driver.get().close();
