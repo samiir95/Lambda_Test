@@ -10,10 +10,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -33,7 +30,7 @@ public class LambdaTests {
 
     @BeforeMethod
     @Parameters({"ltUsername", "ltAccessKey", "browserName", "browserVersion", "platform"})
-    public void setUp(String ltUsername, String ltAccessKey, String browserName, String browserVersion, String platform) {
+    public void setUp(String ltUsername, String ltAccessKey, @Optional("chrome")String browserName, String browserVersion, String platform) {
 
         try {
             this.ltUsername = ltUsername;

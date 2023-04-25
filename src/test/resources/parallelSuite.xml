@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Parallel Test Suite" parallel="tests" thread-count="2">
-    <parameter name="ltUsername" value="YOUR_LAMBDATEST_USERNAME" />
-    <parameter name="ltAccessKey" value="YOUR_LAMBDATEST_ACCESS_KEY" />
+    <parameter name="ltUsername" value="${ltUsername}" />
+    <parameter name="ltAccessKey" value="${ltAccessKey}" />
     <test name="Chrome on Windows 10">
         <parameter name="browserName" value="chrome" />
         <parameter name="platform" value="Windows 10" />
