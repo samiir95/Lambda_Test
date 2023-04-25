@@ -83,14 +83,14 @@ public class LambdaTests {
         WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]//a[contains(@class, 'uppercase')]")));
 
-        // Scroll to the WebElement ‘SEE ALL INTEGRATIONS’ using the scrollIntoView() method
+        // Scroll to the WebElement ‘SEE ALL INTEGRATIONS’ using the scrollIntoView() method and open it to a new tab
         WebElement seeAllIntegrations = driver.get().findElement(By.xpath("//*[@id=\"__next\"]//a[contains(@class, 'uppercase')]"));
-        ((JavascriptExecutor) driver.get()).executeScript("arguments[0].scrollIntoView(true);", seeAllIntegrations);
+        new Actions(driver.get()).moveToElement(seeAllIntegrations).perform();
+        ((JavascriptExecutor) driver.get()).executeScript("window.open(arguments[0].href,'_blank');", seeAllIntegrations);
 
-        // Click on the link and ensure that it opens in a new Tab
+        // Get window handle
         String currentWindowHandle = driver.get().getWindowHandle();
-        Actions actions = new Actions(driver.get());
-        actions.moveToElement(seeAllIntegrations).click().perform();
+
         List<String> windowHandles = new ArrayList<String>(driver.get().getWindowHandles());
         windowHandles.remove(currentWindowHandle);
         driver.get().switchTo().window(windowHandles.get(0));
