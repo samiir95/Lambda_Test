@@ -1,0 +1,41 @@
+version: 0.1
+runson: win
+
+testSuiteTimeout: 30
+autosplit: true
+retryOnFailure: true
+maxRetries: 2
+concurrency: 2
+
+env:
+  CACHE_DIR: m2_cache_dir
+
+cacheKey: '{{ checksum "pom.xml" }}'
+cacheDirectories:
+  - $CACHE_DIR
+
+pre:
+  # Create the Cache directory
+  - mkdir -p m2_cache_dir
+  # Download and install packages in the CACHE_DIR.
+  # Skip execution of the tests in the pre step
+  - mvn -Dmaven.repo.local=$CACHE_DIR -Dmaven.test.skip=true clean install
+
+
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: grep 'test name' src/test/resources/parallelSuite.xml | awk '{print$2}' | sed 's/name=//g' | sed 's/\x3e//g'
+
+testRunnerCommand: mvn test  -DsuiteXmlFile="parallelSuite.xml" -DltUsername="" -DltAccessKey=""
+
+
+post:
+  - cat hyperexecute.yaml
+
+mergeArtifacts: true
+
+uploadArtefacts:
+  - name: ExecutionSnapshots
+    path:
+      - target/surefire-reports/**
