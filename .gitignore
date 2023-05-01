@@ -2,3 +2,10 @@ target/
 allure-results/
 allure-report/
 .idea/
+concierge
+concierge.exe
+hyperexecute.exe
+*.zip
+*.log
+artifacts
+logs
