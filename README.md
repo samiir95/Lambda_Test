@@ -46,6 +46,20 @@ This is a Maven project that uses TestNG, Selenium, Allure, and Maven Surefire p
 
 The above command will generate a report and open it in a new tab in your default browser.
 
+# Steps to run the project using hyperexecute
+
+- Clone the repository to your local system
+
+      git clone https://github.com/samiir95/Lambda_Test.git
+      
+- Navigate to the project directory
+
+      cd Lambda_Test
+      
+- Execute the below command in your project root directory
+
+      hyperexecute.exe --user YOUR_LAMBDA_TEST_USER --key YOUR_LAMBDA_TEST_KEY --config hyperexecute.yaml
+
 
 Note
 In case you encounter any issue while running the tests or have any query, please feel free to raise an issue in the repository or reach out to my email: msamiir38@gmail.com
